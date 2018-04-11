@@ -9,10 +9,10 @@ namespace LeMP.Repl
         private const string IOCategory = "Input and output";
 
         /// <summary>
-        /// The 'files' option.
+        /// The 'files' pseudo-option.
         /// </summary>
         public static readonly Option Files =
-            SequenceOption.CreateStringOption(
+            FlagOption.CreateFlagOption(
                 OptionForm.Long("files"))
             .WithCategory(IOCategory)
             .WithDescription(
@@ -20,8 +20,7 @@ namespace LeMP.Repl
                     "Select input files by listing their files names. Specify ",
                     Quotation.CreateBoldQuotation("-"),
                     " to read from standard input, which is also what happens by " +
-                    "default if no files are opened."))
-            .WithParameters(new SymbolicOptionParameter("files-names", true));
+                    "default if no files are opened."));
 
         /// <summary>
         /// The 'help' option.
@@ -38,7 +37,7 @@ namespace LeMP.Repl
         public static readonly IReadOnlyList<Option> All =
             new Option[]
         {
-            Files,
+            // Files,
             Help
         };
     }
