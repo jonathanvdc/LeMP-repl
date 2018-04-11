@@ -32,13 +32,67 @@ namespace LeMP.Repl
             .WithDescription("Display a help message and exit.");
 
         /// <summary>
+        /// The 'input language' option.
+        /// </summary>
+        public static readonly Option InputLanguage =
+            ValueOption.CreateStringOption(
+                new OptionForm[]
+                {
+                    OptionForm.Long("input-language"),
+                    OptionForm.Short("i")
+                },
+                "ecs")
+            .WithCategory(IOCategory)
+            .WithParameter(new SymbolicOptionParameter("language"))
+            .WithDescription(
+                new Sequence(
+                    "Selects an input language, which can be either ",
+                    Quotation.CreateBoldQuotation("ecs"),
+                    ", ",
+                    Quotation.CreateBoldQuotation("les"),
+                    ", ",
+                    Quotation.CreateBoldQuotation("les2"),
+                    " or ",
+                    Quotation.CreateBoldQuotation("les3"),
+                    ". By default, the input language is EC#."));
+
+        /// <summary>
+        /// The 'output language' option.
+        /// </summary>
+        public static readonly Option OutputLanguage =
+            ValueOption.CreateStringOption(
+                new OptionForm[]
+                {
+                    OptionForm.Long("output-language"),
+                    OptionForm.Short("o")
+                },
+                "les")
+            .WithCategory(IOCategory)
+            .WithParameter(new SymbolicOptionParameter("language"))
+            .WithDescription(
+                new Sequence(
+                    "Selects an output language, which can be either ",
+                    Quotation.CreateBoldQuotation("cs"),
+                    ", ",
+                    Quotation.CreateBoldQuotation("ecs"),
+                    ", ",
+                    Quotation.CreateBoldQuotation("les"),
+                    ", ",
+                    Quotation.CreateBoldQuotation("les2"),
+                    " or ",
+                    Quotation.CreateBoldQuotation("les3"),
+                    ". By default, the output language is LES v3."));
+
+        /// <summary>
         /// A list of all options for LeMP-repl.
         /// </summary>
         public static readonly IReadOnlyList<Option> All =
             new Option[]
         {
             // Files,
-            Help
+            Help,
+            InputLanguage,
+            OutputLanguage
         };
     }
 }

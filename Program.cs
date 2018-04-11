@@ -22,6 +22,10 @@ namespace LeMP.Repl
 
         public static MacroProcessor Processor { get; private set; }
 
+        public static IParsingService Parser { get; private set; }
+
+        public static ILNodePrinter Printer { get; private set; }
+
         public static void Main(string[] args)
         {
             // Acquire a log for, well, logging purposes.
@@ -58,6 +62,9 @@ namespace LeMP.Repl
 
             // Create a macro processor.
             Processor = new MacroProcessor(Sink);
+
+            Parser = GetParser(parsedOptions);
+            Printer = GetPrinter(parsedOptions);
 
             // Start the REPL.
             RunRepl();
@@ -96,12 +103,74 @@ namespace LeMP.Repl
 
         private static IReadOnlyList<LNode> Parse(string input)
         {
-            return EcsLanguageService.Value.Parse(input, Sink);
+            return Parser.Parse(input, Sink);
         }
 
         private static string Print(VList<LNode> nodes)
         {
-            return Les3LanguageService.Value.Print(nodes, Sink);
+            return Printer.Print(nodes, Sink);
+        }
+
+        private static IParsingService GetParser(OptionSet options)
+        {
+            var lang = options.GetValue<string>(Options.InputLanguage);
+            switch (lang.ToLowerInvariant())
+            {
+                case "ecs":
+                    return EcsLanguageService.Value;
+                case "les":
+                    return LesLanguageService.Value;
+                case "les2":
+                    return Les2LanguageService.Value;
+                case "les3":
+                    return Les3LanguageService.Value;
+                default:
+                    Log.Log(
+                        new LogEntry(
+                            Pixie.Severity.Error,
+                            "unknown input language",
+                            "input language ",
+                            Quotation.CreateBoldQuotation(lang),
+                            " could not be matched to a known input language.",
+                            new Paragraph("Option usage:"),
+                            new Paragraph(
+                                new OptionHelp(
+                                    Options.InputLanguage,
+                                    GnuOptionPrinter.Instance))));
+                    return EcsLanguageService.Value;
+            }
+        }
+
+        private static ILNodePrinter GetPrinter(OptionSet options)
+        {
+            var lang = options.GetValue<string>(Options.OutputLanguage);
+            switch (lang.ToLowerInvariant())
+            {
+                case "cs":
+                    return EcsLanguageService.WithPlainCSharpPrinter;
+                case "ecs":
+                    return EcsLanguageService.Value;
+                case "les":
+                    return LesLanguageService.Value;
+                case "les2":
+                    return Les2LanguageService.Value;
+                case "les3":
+                    return Les3LanguageService.Value;
+                default:
+                    Log.Log(
+                        new LogEntry(
+                            Pixie.Severity.Error,
+                            "unknown input language",
+                            "output language ",
+                            Quotation.CreateBoldQuotation(lang),
+                            " could not be matched to a known output language.",
+                            new Paragraph("Option usage:"),
+                            new Paragraph(
+                                new OptionHelp(
+                                    Options.OutputLanguage,
+                                    GnuOptionPrinter.Instance))));
+                    return Les3LanguageService.Value;
+            }
         }
     }
 }
