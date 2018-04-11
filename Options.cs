@@ -9,6 +9,18 @@ namespace LeMP.Repl
         private const string IOCategory = "Input and output";
 
         /// <summary>
+        /// The 'do not process macros' option.
+        /// </summary>
+        public static readonly Option DoNotProcessMacros =
+            FlagOption.CreateFlagOption(
+                OptionForm.Long("no-process-macros"),
+                OptionForm.Short("p"))
+            .WithCategory(IOCategory)
+            .WithDescription(
+                new Sequence(
+                    "Turns off macro processing by LeMP."));
+
+        /// <summary>
         /// The 'files' pseudo-option.
         /// </summary>
         public static readonly Option Files =
@@ -89,6 +101,7 @@ namespace LeMP.Repl
         public static readonly IReadOnlyList<Option> All =
             new Option[]
         {
+            DoNotProcessMacros,
             // Files,
             Help,
             InputLanguage,

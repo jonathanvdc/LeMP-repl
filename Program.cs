@@ -61,7 +61,10 @@ namespace LeMP.Repl
             }
 
             // Create a macro processor.
-            Processor = new MacroProcessor(Sink);
+            if (!parsedOptions.GetValue<bool>(Options.DoNotProcessMacros))
+            {
+                Processor = new MacroProcessor(Sink);
+            }
 
             Parser = GetParser(parsedOptions);
             Printer = GetPrinter(parsedOptions);
@@ -72,7 +75,16 @@ namespace LeMP.Repl
 
         private static VList<LNode> Process(IReadOnlyList<LNode> nodes)
         {
-            return Processor.ProcessSynchronously(new VList<LNode>(nodes));
+            var vlist = new VList<LNode>(nodes);
+
+            if (Processor == null)
+            {
+                return vlist;
+            }
+            else
+            {
+                return Processor.ProcessSynchronously(vlist);
+            }
         }
 
         private static void RunRepl()
