@@ -2,7 +2,7 @@
 
 `LeMP-repl` is a super simple interactive program that that reads unprocessed EC#, LES v2 or LES v3 code as input and produces processed or unprocessed EC#, LES v2 or LES v3 code as output.
 
-Here's what that looks like in actions:
+Here's what `LeMP-repl` looks like in action:
 
 ```
 $ LeMP-repl
