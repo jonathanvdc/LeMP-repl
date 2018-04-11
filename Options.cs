@@ -40,7 +40,8 @@ namespace LeMP.Repl
         public static readonly Option Help =
             FlagOption.CreateFlagOption(
                 OptionForm.Long("help"),
-                OptionForm.Short("h"))
+                OptionForm.Short("h"),
+                OptionForm.Short("?"))
             .WithDescription("Display a help message and exit.");
 
         /// <summary>

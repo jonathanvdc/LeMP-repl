@@ -52,9 +52,10 @@ namespace LeMP.Repl
             {
                 rawLog.Log(
                     new HelpMessage(
-                        "LeMP-repl is a simple tool that reads unprocessed EC#, " +
-                        "LES v2 or LES v3 code as input and produces processed or " +
-                        "unprocessed EC#, LES v2 or LES v3 code as output.",
+                        "LeMP-repl is a simple interactive program that " +
+                        "reads unprocessed EC#, LES v2 or LES v3 code as " +
+                        "input and produces processed or unprocessed EC#, " +
+                        "LES v2 or LES v3 code as output.",
                         "LeMP-repl [options]",
                         Options.All));
                 return;
