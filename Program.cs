@@ -68,21 +68,11 @@ namespace LeMP.Repl
             return Processor.ProcessSynchronously(new VList<LNode>(nodes));
         }
 
-        private static VList<LNode> ParseFile(string fileName)
-        {
-            return new VList<LNode>(GuessParser(fileName).ParseFile(fileName, Sink));
-        }
-
         private static void RunRepl()
         {
             if (Console.IsInputRedirected)
             {
-                Console.WriteLine(
-                    Print(
-                        Process(
-                            EcsLanguageService.Value.Parse(
-                                Console.In.ReadToEnd(),
-                                Sink))));
+                Console.WriteLine(Print(Process(Parse(Console.In.ReadToEnd()))));
                 return;
             }
 
@@ -99,16 +89,14 @@ namespace LeMP.Repl
                 {
                     continue;
                 }
-                Console.WriteLine(
-                    Print(
-                        Process(
-                            EcsLanguageService.Value.Parse(line, Sink))));
+
+                Console.WriteLine(Print(Process(Parse(line))));
             }
         }
 
-        private static IParsingService GuessParser(string fileName)
+        private static IReadOnlyList<LNode> Parse(string input)
         {
-            return EcsLanguageService.Value;
+            return EcsLanguageService.Value.Parse(input, Sink);
         }
 
         private static string Print(VList<LNode> nodes)
