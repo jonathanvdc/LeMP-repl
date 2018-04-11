@@ -2,7 +2,16 @@
 
 `LeMP-repl` is a super simple interactive program that that reads unprocessed EC#, LES v2 or LES v3 code as input and produces processed or unprocessed EC#, LES v2 or LES v3 code as output.
 
-The main motivation for building this tool is that it makes it much easier to look at and reason about EC# syntax trees.
+Here's what that looks like in actions:
+
+```
+$ LeMP-repl
+> class A { }
+#class(A, #(), { });
+>
+```
+
+Easy, right? The main motivation for building this tool is that it makes it much easier to look at and reason about EC# syntax trees.
 
 ## Build instructions
 
