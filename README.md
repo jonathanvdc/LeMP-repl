@@ -19,7 +19,7 @@ $ msbuild /p:Configuration=Release
 
 ## Technologies
 
-  * `LeMP-repl` is mostly just a wrapper around David Piepgrass' amazing Lexical Macro Processor (LeMP) and Enhanced C# (EC#) parsers, both of which can be found [here](https://github.com/qwertie/ecsharp).
+  * `LeMP-repl` is mostly just a wrapper around David Piepgrass' amazing Lexical Macro Processor (LeMP) and Enhanced C# (EC#) parser, both of which can be found [here](https://github.com/qwertie/ecsharp).
 
   * `LeMP-repl` uses [Pixie](https://github.com/jonathanvdc/Pixie) for option parsing and error logging.
 
