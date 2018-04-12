@@ -67,7 +67,9 @@ namespace LeMP.Repl
                     Quotation.CreateBoldQuotation("les2"),
                     " or ",
                     Quotation.CreateBoldQuotation("les3"),
-                    ". By default, the input language is EC#."));
+                    ". By default, the input language is ",
+                    Quotation.CreateBoldQuotation("ecs"),
+                    "."));
 
         /// <summary>
         /// The 'output language' option.
@@ -94,7 +96,9 @@ namespace LeMP.Repl
                     Quotation.CreateBoldQuotation("les2"),
                     " or ",
                     Quotation.CreateBoldQuotation("les3"),
-                    ". By default, the output language is LES v3."));
+                    ". By default, the output language is ",
+                    Quotation.CreateBoldQuotation("les"),
+                    "."));
 
         /// <summary>
         /// A list of all options for LeMP-repl.

@@ -31,7 +31,7 @@ $ msbuild /p:Configuration=Release
 
   * `--input-language=⟨language⟩, -i⟨language⟩`
 
-    Selects an input language, which can be either `ecs`, `les`, `les2` or `les3`. By default, the input language is EC#.
+    Selects an input language, which can be either `ecs`, `les`, `les2` or `les3`. By default, the input language is `ecs`.
 
   * `--no-process-macros, -p`
 
@@ -39,7 +39,7 @@ $ msbuild /p:Configuration=Release
 
   * `--output-language=⟨language⟩, -o⟨language⟩`
 
-    Selects an output language, which can be either `cs`, `ecs`, `les`, `les2` or `les3`. By default, the output language is LES v3.
+    Selects an output language, which can be either `cs`, `ecs`, `les`, `les2` or `les3`. By default, the output language is `les`.
 
 ### Overall options
 
