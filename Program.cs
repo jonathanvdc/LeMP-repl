@@ -65,6 +65,8 @@ namespace LeMP.Repl
             if (!parsedOptions.GetValue<bool>(Options.DoNotProcessMacros))
             {
                 Processor = new MacroProcessor(Sink);
+                Processor.AddMacros(typeof(StandardMacros).Assembly, false);
+                Processor.PreOpenedNamespaces.Add(GSymbol.Get("LeMP"));
             }
 
             Parser = GetParser(parsedOptions);
