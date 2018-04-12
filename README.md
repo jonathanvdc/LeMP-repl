@@ -22,6 +22,12 @@ $ nuget restore
 $ msbuild /p:Configuration=Release
 ```
 
+## Technologies
+
+  * `LeMP-repl` is mostly just a wrapper around qwertie's amazing Lexical Macro Processor (LeMP) and Enhanced C# (EC#) parsers, both of which can be found [here](https://github.com/qwertie/ecsharp).
+
+  * `LeMP-repl` uses [Pixie](https://github.com/jonathanvdc/Pixie) for option parsing and error logging.
+
 ## Options
 
 `LeMP-repl` tries to fulfill a simple use case, so there aren't a lot of options. Here's a full list, adapted from `--help`:
