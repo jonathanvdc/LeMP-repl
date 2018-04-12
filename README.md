@@ -4,14 +4,9 @@
 
 Here's what `LeMP-repl` looks like in action:
 
-```
-$ LeMP-repl
-> class A { }
-#class(A, #(), { });
->
-```
+![LeMP-repl usage](docs/img/usage.svg)
 
-Easy, right? The main motivation for building this tool is that it makes it much easier to look at and reason about EC# syntax trees.
+Easy, right? It's just a simple tool that makes it much easier to look at and reason about EC# syntax trees.
 
 ## Build instructions
 
