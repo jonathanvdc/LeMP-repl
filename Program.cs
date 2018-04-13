@@ -7,6 +7,7 @@ using Loyc.Ecs;
 using Loyc.Syntax;
 using Loyc.Syntax.Les;
 using Pixie;
+using Pixie.Loyc;
 using Pixie.Markup;
 using Pixie.Options;
 using Pixie.Terminal;
@@ -35,8 +36,10 @@ namespace LeMP.Repl
                 rawLog,
                 entry => DiagnosticExtractor.Transform(entry, new Text("LeMP-repl")));
 
-            // TODO: create an IMessageSink that sends messages to the Pixie log.
-            Sink = new SeverityMessageFilter(ConsoleMessageSink.Value, Loyc.Severity.NoteDetail);
+            // Wrap the log in a Loyc message sink.
+            Sink = new SeverityMessageFilter(
+                new PixieMessageSink(Log),
+                Loyc.Severity.NoteDetail);
 
             // Create an option parser.
             var optParser = new GnuOptionSetParser(
